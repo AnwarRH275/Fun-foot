@@ -39,9 +39,7 @@ const styles = StyleSheet.create({
         height: 46,
         backgroundColor: 'rgba(3, 3, 3, 0.8)',
         borderRadius: 10,
-        flex: 'none',
-        order: 0,
-        flexGrow: 0,
+        
         alignItems: 'center',
         justifyContent: 'space-between',
         shadowOffset: { width: 0, height: 2 },

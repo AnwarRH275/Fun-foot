@@ -1,7 +1,7 @@
 
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {StyleSheet, Platform, TouchableOpacity, Image} from 'react-native';
+import {StyleSheet, Platform, TouchableOpacity, Image, View} from 'react-native';
 import {COLORS, ROUTES} from '../constants';
 import {Home, Wallet, Notifications, Settings} from '../screens';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -28,7 +28,7 @@ function BottomTabNavigator() {
         tabBarShowLabel: false,
         tabBarInactiveTintColor: COLORS.dark,
         tabBarStyle: styles.tabBarStyle,
-        tabBarActiveTintColor: COLORS.primary,
+       // tabBarActiveTintColor: COLORS.primary,
         tabBarIcon: ({color, size, focused}) => {
           let iconName;
 
@@ -43,9 +43,10 @@ function BottomTabNavigator() {
               ? stage4
               : stage4;
           }
-
+          // iconName='home'
           // return <Icon name={iconName} size={22} color={color} />;
           return <Image source={iconName} />
+          
         },
       })}>
       <Tab.Screen
@@ -93,6 +94,7 @@ function BottomTabNavigator() {
           },
         }}
       />
+      
     </Tab.Navigator>
   );
 }
@@ -103,11 +105,13 @@ const styles = StyleSheet.create({
   tabBarStyle: {
 
     position: 'absolute',
-    backgroundColor: COLORS.transparent,
+   backgroundColor:  Platform.OS==='ios' && COLORS.transparent ,
+   
     borderTopWidth: 0,
-    bottom: 15,
-    right: 10,
-    left: 10,
-    height: 92,
+    bottom: Platform.OS==='ios' ? 10 : 0,
+    right: Platform.OS==='ios' ? 10 : 0,
+    left: Platform.OS==='ios' ? 10 : 0,
+    height: Platform.OS==='ios' ?  92 : 60,
+    borderRadius:20
   },
 });

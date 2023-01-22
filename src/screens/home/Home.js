@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {Platform, StyleSheet, Text, View} from 'react-native';
 import React, { useState } from 'react';
 import {COLORS} from '../../constants';
 import Background from '../../components/Background';
@@ -24,7 +24,9 @@ const Home = ({navigation}) => {
       <StartGame setStartGame = {setStartGame} setTypeGame={setTypeGame}/>
     ):(<GameStage1 typeGame={typeGame} />)}
     
-    
+    <View>
+     
+    </View>
     </Background>
   );
 };

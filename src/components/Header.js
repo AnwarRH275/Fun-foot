@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, Image } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, Image, Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
 import menu from '../assets/align-left.png';
@@ -42,8 +42,8 @@ const styles = StyleSheet.create({
     },
     headerContainer: {
         // height: 56,
-        paddingHorizontal: 30,
-        paddingVertical:20,
+       paddingHorizontal:Platform.OS === 'android' ? 10:30,
+        paddingVertical:Platform.OS === 'android' ? 15:20,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',

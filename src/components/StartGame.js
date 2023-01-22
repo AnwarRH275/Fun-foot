@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, Image, TouchableOpacity ,Platform} from 'react-native'
 import React from 'react'
 import banner from '../assets/Banner.png';
 import NavigationCat from './NavigationCat';
@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
     containerbtn:{
        
         marginBottom:150,
+        bottom:Platform.OS === 'android' ? 80:0,
         width: 283,
         height: 50,
         backgroundColor: '#5142E6',

@@ -98,8 +98,11 @@ const Login = props => {
                 <TouchableOpacity
                   onPress={() => navigation.navigate(ROUTES.HOME)}
                   activeOpacity={0.7}
-                  style={styles.loginBtn}>
-                  <Text style={styles.loginText}>SE CONNECTER</Text>
+                  style={styles.loginBtn}
+                  >
+                   <Text 
+                  style={styles.loginText}
+                  >SE CONNECTER</Text> 
                 </TouchableOpacity>
       
             </View>
@@ -288,9 +291,9 @@ const styles = StyleSheet.create({
     fontSize: 20,
     lineHeight: 27,
     color: '#F1FAEE',
-    flex: 'none',
-    order: 0,
-    flexGrow: 0,
+    // flex: 'none',
+    // order: 0,
+    // flexGrow: 0,
   },
   forgotPassText: {
     top:4,

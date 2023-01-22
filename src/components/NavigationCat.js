@@ -74,9 +74,12 @@ const NavigationCat = ({setTypeGame}) => {
 const styles = {
   container: {
    // flex: 1,
+
+   position:'relative',
     alignItems: 'center',
     justifyContent: 'center',
-    marginVertical:10
+    marginVertical:20,
+    marginTop:60
     
   },
   buttonColumn:{
@@ -85,6 +88,7 @@ const styles = {
     justifyContent: 'center',
   },
   itemContainer: {
+    
     alignItems: 'flex-start',
     alignItems: 'center',
     padding: 9,
