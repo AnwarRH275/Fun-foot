@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
     },
-    container: {
+        container: {
       
         flexDirection:'row',
         marginHorizontal:35,
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
         padding: 2,
         width: 128,
         height: 46,
-        backgroundColor: 'rgba(3, 3, 3, 0.8)',
+        backgroundColor: COLORS.primary,//'rgba(3, 3, 3, 0.8)',
         borderRadius: 10,
         
         alignItems: 'center',

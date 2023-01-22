@@ -3,10 +3,12 @@ export default {
     REGISTER: 'Register',
     FORGOT_PASSWORD: 'Forgot Password',
   
+    GAME_S1:'GameStage1',
+
     HOME: 'Home',
     HOME_TAB: 'Home Tab',
     HOME_DRAWER: 'Home Drawer',
-  
+
     WALLET: 'Wallet',
     WALLET_DRAWER: 'Wallet Drawer',
   

@@ -11,7 +11,7 @@ import GameStage1 from '../game/GameStage1';
 
 const Home = ({navigation}) => {
   const [startGame , setStartGame] = useState(true);
-  const [typeGame,setTypeGame] = useState('Espagnol');
+  
   
   return (
     <Background >
@@ -20,10 +20,9 @@ const Home = ({navigation}) => {
 
    
     <Scores />
-    {startGame ? (
-      <StartGame setStartGame = {setStartGame} setTypeGame={setTypeGame}/>
-    ):(<GameStage1 typeGame={typeGame} />)}
-    
+   
+      <StartGame setStartGame = {setStartGame} />
+   
     <View>
      
     </View>

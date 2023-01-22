@@ -1,10 +1,21 @@
 import { View, Text, StyleSheet, Image, TouchableOpacity ,Platform} from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import banner from '../assets/Banner.png';
 import NavigationCat from './NavigationCat';
+import { COLORS, ROUTES } from '../constants';
+import { useNavigation } from '@react-navigation/native';
+
+const StartGame = ({setStartGame}) => {
+  const [typeGame,setTypeGame] = useState('Espagnol');
+  const navigation = useNavigation();
 
 
-const StartGame = ({setStartGame,setTypeGame}) => {
+  const handlePress = () => {
+    console.log(typeGame)
+    navigation.navigate(ROUTES.GAME_S1,{typeGame});
+  }
+
+
   return (
     <View style={{flex:1}}>
         <View style={styles.container}>
@@ -15,7 +26,7 @@ const StartGame = ({setStartGame,setTypeGame}) => {
         <NavigationCat setTypeGame={setTypeGame} />
         <View style={{alignItems:'center'}}>
             <TouchableOpacity style={styles.containerbtn}
-            onPress={()=>setStartGame(false)}
+            onPress={handlePress}
             >
                     
                     <Text style={styles.text}>Jouer</Text>
@@ -38,7 +49,9 @@ const styles = StyleSheet.create({
       //backgroundColor: '#FFFFFF',
     },
     image:{
-    marginTop:10,   
+    marginTop:10,  
+    // width:"90%",
+    // height:200, 
     borderColor: 'white',
     shadowColor: 'white',
     shadowOffset: { width: 0, height: 2 },
@@ -53,7 +66,7 @@ const styles = StyleSheet.create({
         bottom:Platform.OS === 'android' ? 80:0,
         width: 283,
         height: 50,
-        backgroundColor: '#5142E6',
+        backgroundColor: COLORS.red,
         borderRadius: 56,
         alignItems: 'center',
         justifyContent: 'center',

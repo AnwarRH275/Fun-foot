@@ -13,6 +13,7 @@ import stage1 from '../assets/ICONNAVIGATION/LOGO1.png';
 import stage2 from '../assets/ICONNAVIGATION/LOGO2.png';
 import stage3 from '../assets/ICONNAVIGATION/LOGO3.png';
 import stage4 from '../assets/ICONNAVIGATION/LOGO4.png';
+import GameNavigation from './GameNavigation';
 
 
 const Tab = createBottomTabNavigator();
@@ -51,7 +52,7 @@ function BottomTabNavigator() {
       })}>
       <Tab.Screen
         name={ROUTES.HOME_TAB}
-        component={Home}
+        component={GameNavigation}
         options={{
           tabBarButton: props => <CustomTabBarButton route="home" {...props} />,
         }}
