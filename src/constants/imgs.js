@@ -1,4 +1,4 @@
 export default {
-    bgPattern: require('../assets/drawer-cover.jpeg'),
+    bgPattern: require('../assets/onboarding2.jpg'),
     user: require('../assets/user.jpg'),
   };

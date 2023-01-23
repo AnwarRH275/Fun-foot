@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { COLORS } from '../constants';
 
 
 const Match = ({number,equipe1,equipe2}) => {
-
+  const [selectedIndex, setSelectedIndex] = useState(-1);
   return (
     <View style={styles.container}>
       <View style={styles.containerRow}> 
@@ -12,14 +13,47 @@ const Match = ({number,equipe1,equipe2}) => {
           <Text>{equipe2}</Text>  
         </View>
        
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>1</Text>
+        <TouchableOpacity 
+        style={
+          [
+            styles.button,
+            {
+            backgroundColor: selectedIndex===1 ? COLORS.primary : COLORS.gray
+          },
+          ]}
+          onPress={() => setSelectedIndex(1)}
+        >
+          <Text 
+          style={[styles.buttonText,
+            {color:  selectedIndex ===1 ? COLORS.gray : COLORS.dark,}
+            ]}
+          >1</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>X</Text>
+        <TouchableOpacity 
+         style= {
+          [
+            styles.button,
+            {
+            backgroundColor: selectedIndex===0 ? COLORS.primary : COLORS.gray
+          },
+          ]}
+          onPress={() => setSelectedIndex(0)}>
+          <Text style={[styles.buttonText,
+            {color:  selectedIndex ===0 ? COLORS.gray : COLORS.dark,}
+            ]}>X</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>2</Text>
+        <TouchableOpacity 
+         style= {
+          [
+            styles.button,
+            {
+            backgroundColor: selectedIndex===2 ? COLORS.primary : COLORS.gray
+          },
+          ]}
+          onPress={() => setSelectedIndex(2)}>
+          <Text style={[styles.buttonText,
+            {color:  selectedIndex ===2 ? COLORS.gray : COLORS.dark,}
+            ]}>2</Text>
         </TouchableOpacity>
 
       </View>
@@ -29,11 +63,8 @@ const Match = ({number,equipe1,equipe2}) => {
 
 const styles = StyleSheet.create({
   container: {
-  width:330,
-   
-    // width:'100%',
+  width:330,// width:'100%',
     height:60,
-
     backgroundColor: '#FFFFFF',
     shadowColor: 'rgba(154, 154, 154, 0.25)',
     shadowOffset: { width: 0, height: 0 },
@@ -70,7 +101,8 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 18,
     color: 'black',
-    textAlign: 'center'
+    textAlign: 'center',
+    fontWeight:'600'
   }
 });
 

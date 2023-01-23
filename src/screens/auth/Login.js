@@ -57,7 +57,7 @@ const Login = props => {
               <Icon name="person-circle-outline" size={25} color="#1D3557" style={styles.inputIcon} />
               <TextInput
                 style={styles.inputT}
-                placeholder="Username"
+                placeholder="Nom d'utilisateur ou email"
                 onChangeText={text => setText(text)}
                 value={text}
               />
@@ -67,7 +67,7 @@ const Login = props => {
               <Icon name="lock-closed" size={25} color="#1D3557" style={styles.inputIcon} />
               <TextInput
                 style={styles.inputT}
-                placeholder="Password"
+                placeholder="Mot de passe"
                 secureTextEntry={hidePassword}
                 onChangeText={password => setPassword(password)}
                 value={password}
@@ -117,7 +117,7 @@ const Login = props => {
             </TouchableOpacity>
           </View>
             <View style={styles.forgotPassBtn}>
-                <Text style={{...styles.forgotPassText,fontSize: 18,top:22}}>Vous pouvez vous connecter via :  </Text>
+                <Text style={{...styles.forgotPassText,fontSize: 18,top:120}}>Vous pouvez vous connecter via :  </Text>
             </View>
 
             <View style={styles.containerMedia}>
@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
     width: 68,
     height: 55,
     marginHorizontal:10,
-    top:50,
+    top:150,
     backgroundColor: '#F1FAEE',
     borderRadius: 10,
   },

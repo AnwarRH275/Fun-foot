@@ -15,57 +15,59 @@ const GameStage1 = ({route}) => {
         {number: '2',equipe1:'GIRONA',equipe2:'SEVILLE',status:''},
         {number: '3',equipe1:'SOCIEDAD',equipe2:'ATHLETIC BILBAO',status:''},
         {number: '4',equipe1:'VALLADOLID',equipe2:'RAYO VALLECANO',status:''},
+        {number: '5',equipe1:'PONFERRADINA',equipe2:'EIBAR',status:''},
+        {number: '6',equipe1:'LEGANES',equipe2:'LEVANTE',status:''},
+        {number: '7',equipe1:'HUESCA',equipe2:'TENERIFE',status:''},
+        {number: '8',equipe1:'LUGO',equipe2:'OVIEDO',status:''},
+        {number: '9',equipe1:'VALLADOLID',equipe2:'VILLARREAL B',status:''},
+        {number: '10',equipe1:'SOCIEDAD',equipe2:'ATHLETIC BILBAO',status:''},
+        {number: '11',equipe1:'VALLADOLID',equipe2:'RAYO VALLECANO',status:''},
+        {number: '12',equipe1:'VALLADOLID',equipe2:'RAYO VALLECANO',status:''},
       ];
 
   return (
 
     <Background >
-   
-   
-
-   
-    <Scores />
-    <View style={styles.container}>
-        <View style={styles.containerSwitch}>
-        <TouchableOpacity style={
-          [
-            styles.button,
-            {
-            backgroundColor: selectedIndex ? COLORS.red : COLORS.gray
-          },
-          ]}
-          onPress={() => setSelectedIndex(true)}
-        
-          
+      <Scores />
+      <View style={styles.container}>
+          <View style={styles.containerSwitch}>
+          <TouchableOpacity style={
+            [
+              styles.button,
+              {
+              backgroundColor: selectedIndex ? COLORS.red : COLORS.gray
+            },
+            ]}
+            onPress={() => setSelectedIndex(true)}
+            >
+            <Text style={[styles.text,
+            {color:  selectedIndex ? COLORS.gray : COLORS.dark,}
+            ]}>{typeGame}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={
+            [
+              styles.button,
+              { 
+              backgroundColor: selectedIndex ? COLORS.gray : COLORS.red,
+              
+            },
+            ]}
+            onPress={() => setSelectedIndex(false)}
           >
-          <Text style={[styles.text,
-          {color:  selectedIndex ? COLORS.gray : COLORS.dark,}
-          ]}>{typeGame}</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={
-          [
-            styles.button,
-            { 
-            backgroundColor: selectedIndex ? COLORS.gray : COLORS.red,
-            
-          },
-          ]}
-          onPress={() => setSelectedIndex(false)}
-        >
-          <Text style={[styles.text,
-          {color:  selectedIndex ? COLORS.dark : COLORS.gray,}
-          ]}>Resultat</Text>
-        </TouchableOpacity>
-        </View>
-      
-        <FlatList
-        data={data}
-        renderItem={({ item,index }) => (
-          <Match key={index} number={item.number} equipe1={item.equipe1}  equipe2={item.equipe2}  />
-        )}
-        keyExtractor={item => item.id}
-      />
-    </View>
+            <Text style={[styles.text,
+            {color:  selectedIndex ? COLORS.dark : COLORS.gray,}
+            ]}>Resultat</Text>
+          </TouchableOpacity>
+          </View>
+        
+          <FlatList
+          data={data}
+          renderItem={({ item,index }) => (
+            <Match key={item.number} number={item.number} equipe1={item.equipe1}  equipe2={item.equipe2}  />
+          )}
+          keyExtractor={item => item.number}
+        />
+      </View>
 
     </Background>
   );
@@ -83,9 +85,10 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     padding: 20,
-    paddingTop: 10,
+    paddingTop: 6,
     paddingBottom: 10,
-    margin:10
+    margin:10,
+    marginBottom:130
   },
   containerSwitch:{
     width: 340,
