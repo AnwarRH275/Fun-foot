@@ -3,7 +3,7 @@ import { View, FlatList, Text, TouchableOpacity, ImageBackground } from 'react-n
 import { COLORS } from '../constants';
 import background from '../assets/ICONNAVIGATION/back.png'
 
-const NavigationCat = ({setTypeGame}) => {
+const NavigationCat = ({setTypeGame,handlePress}) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const data = [
     {number: 'N° 957',key:'Espagnol',date:'12/01/2023',time:'14:00'},
@@ -24,7 +24,9 @@ const NavigationCat = ({setTypeGame}) => {
         ]}
         onPress={() => {
             setTypeGame(item.key)
-            setSelectedIndex(index)}
+            setSelectedIndex(index)
+            handlePress()
+          }
         }
       >
         <ImageBackground  source={background}
@@ -93,7 +95,7 @@ const styles = {
     alignItems: 'center',
     padding: 9,
     margin: 10,
-    marginVertical:100,
+    marginBottom:300,
     width: 230,
     height: 170,
     backgroundColor: COLORS.primary,

@@ -9,6 +9,17 @@ export default {
     HOME_TAB: 'Home Tab',
     HOME_DRAWER: 'Home Drawer',
 
+    HISTORIQUE: 'Historique',
+    HISTORIQUE_DRAWER: 'Historique',
+
+    STORE: 'Store',
+    STORE_DRAWER: 'Store',
+
+    AFFILIATION: 'Affiliation',
+    AFFILIATION_DRAWER: 'Affiliation',
+
+
+
     WALLET: 'Wallet',
     WALLET_DRAWER: 'Wallet Drawer',
   

@@ -5,6 +5,7 @@ import {BottomTabBar} from '@react-navigation/bottom-tabs';
 import {COLORS} from '../constants';
 
 const CustomTabBar = props => {
+  
   return (
     <View>
       <View style={styles.tabBar} />
@@ -22,7 +23,7 @@ const styles = StyleSheet.create({
     left: 10,
     bottom: 38,
     height: 20,
-    backgroundColor: COLORS.white,
+   // backgroundColor: COLORS.white,
     borderRadius: 10,
     shadowColor: COLORS.black,
     shadowOffset: {

@@ -15,17 +15,13 @@ const Home = ({navigation}) => {
   
   return (
     <Background >
-   
-    <Header  />
 
-   
-    <Scores />
+      <Header  />
+      <Scores />
    
       <StartGame setStartGame = {setStartGame} />
    
-    <View>
-     
-    </View>
+    
     </Background>
   );
 };

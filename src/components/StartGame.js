@@ -17,22 +17,18 @@ const StartGame = ({setStartGame}) => {
 
 
   return (
-    <View style={{flex:1}}>
+    <View style={{flex:1,flexDirection:'column',justifyContent:'center'}}>
         <View style={styles.container}>
             <Image style={styles.image} source={banner} />
-
-           
         </View>
-        <NavigationCat setTypeGame={setTypeGame} />
-        <View style={{alignItems:'center'}}>
+        <NavigationCat setTypeGame={setTypeGame} handlePress={handlePress} />
+          {/* <View style={{alignItems:'center'}}>
             <TouchableOpacity style={styles.containerbtn}
             onPress={handlePress}
-            >
-                    
-                    <Text style={styles.text}>Jouer</Text>
+            >  
+              <Text style={styles.text}>Jouer</Text>
             </TouchableOpacity>
-        </View>
-       
+          </View>  */}
      </View>
   )
 }
@@ -61,7 +57,7 @@ const styles = StyleSheet.create({
         
     },
     containerbtn:{
-       
+       flex:1,
         marginBottom:150,
         bottom:Platform.OS === 'android' ? 80:0,
         width: 283,

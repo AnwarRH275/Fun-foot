@@ -9,7 +9,7 @@ export default {
     gray: '#F3F4F5',
     grayLight: '#ccc',
     black: '#0a0a0a',
-    green:'#99d98c',
+    green:'#07a157',
     bgInput:'#caf0f8',
     red:'#E63946'
   };

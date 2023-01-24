@@ -8,7 +8,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import SettingsNavigator from './SettingsNavigator';
 import CustomTabBarButton from '../components/CustomTabBarButton';
 import CustomTabBar from '../components/CustomTabBar';
-import {useNavigation} from '@react-navigation/native';
+import {getFocusedRouteNameFromRoute, useNavigation} from '@react-navigation/native';
 import stage1 from '../assets/ICONNAVIGATION/LOGO1.png';
 import stage2 from '../assets/ICONNAVIGATION/LOGO2.png';
 import stage3 from '../assets/ICONNAVIGATION/LOGO3.png';
@@ -27,8 +27,16 @@ function BottomTabNavigator() {
       screenOptions={({route}) => ({
         headerShown: false,
         tabBarShowLabel: false,
+        
         tabBarInactiveTintColor: COLORS.dark,
-        tabBarStyle: styles.tabBarStyle,
+        tabBarStyle: ((route) => {
+          const routeName = getFocusedRouteNameFromRoute(route) ?? ""
+          console.log(routeName)
+          if (routeName === ROUTES.GAME_S1) {
+            return { display: "none" }
+          }
+          return  styles.tabBarStyle
+        })(route),
        // tabBarActiveTintColor: COLORS.primary,
         tabBarIcon: ({color, size, focused}) => {
           let iconName;
@@ -55,13 +63,16 @@ function BottomTabNavigator() {
         component={GameNavigation}
         options={{
           tabBarButton: props => <CustomTabBarButton route="home" {...props} />,
+          
         }}
+        
       />
       <Tab.Screen
         name={ROUTES.WALLET}
         component={Wallet}
         options={{
           tabBarButton: props => <CustomTabBarButton {...props} />,
+          
         }}
       />
       <Tab.Screen

@@ -5,12 +5,18 @@ import { COLORS } from '../constants';
 
 const Match = ({number,equipe1,equipe2}) => {
   const [selectedIndex, setSelectedIndex] = useState(-1);
+
+  const handlerValidation = ()=>{
+  
+      console.log('vvvv')
+    
+  }
   return (
     <View style={styles.container}>
       <View style={styles.containerRow}> 
         <View style={{width:130}}>
-          <Text>{equipe1}</Text>
-          <Text>{equipe2}</Text>  
+          <Text>1 - {equipe1}</Text>
+          <Text>2 - {equipe2}</Text>  
         </View>
        
         <TouchableOpacity 
@@ -50,7 +56,12 @@ const Match = ({number,equipe1,equipe2}) => {
             backgroundColor: selectedIndex===2 ? COLORS.primary : COLORS.gray
           },
           ]}
-          onPress={() => setSelectedIndex(2)}>
+          onPress={() => {
+            setSelectedIndex(2)
+            if(number==12){
+              handlerValidation();
+            }
+          }}>
           <Text style={[styles.buttonText,
             {color:  selectedIndex ===2 ? COLORS.gray : COLORS.dark,}
             ]}>2</Text>

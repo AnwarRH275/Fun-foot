@@ -14,13 +14,17 @@ function GameNavigation() {
       <Stack.Screen
         options={{
             headerShown: false,
+            
         }}
       name={ROUTES.HOME} component={Home} />
       {/* <Stack.Screen name={ROUTES.SETTINGS_DETAIL} component={SettingsDetail} /> */}
       <Stack.Screen
-      options={{
-        headerShown: true,
-      }}
+      // options={{
+      //   headerShown: true,
+      //   tabBarVisible: false
+      // }}
+
+      options={{ tabBarStyle: { display: "none" }, }}
       name={ROUTES.GAME_S1} component={GameStage1} />
     </Stack.Navigator>
   );

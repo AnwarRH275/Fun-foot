@@ -25,6 +25,8 @@ const GameStage1 = ({route}) => {
         {number: '12',equipe1:'VALLADOLID',equipe2:'RAYO VALLECANO',status:''},
       ];
 
+
+      const handlePress = () => {};
   return (
 
     <Background >
@@ -68,7 +70,13 @@ const GameStage1 = ({route}) => {
           keyExtractor={item => item.number}
         />
       </View>
-
+      <View style={{alignItems:'center'}}>
+            <TouchableOpacity style={styles.containerbtn}
+            onPress={handlePress}
+            >  
+              <Text style={styles.text2}>Parier</Text>
+            </TouchableOpacity>
+          </View> 
     </Background>
   );
 }
@@ -88,7 +96,7 @@ const styles = StyleSheet.create({
     paddingTop: 6,
     paddingBottom: 10,
     margin:10,
-    marginBottom:130
+    marginBottom:Platform.OS === 'android' ? 30:40
   },
   containerSwitch:{
     width: 340,
@@ -116,7 +124,28 @@ const styles = StyleSheet.create({
     fontWeight:'bold'
     //padding: 12,
    // color: 'white'
-  }
+  },
+  containerbtn:{
+    //flex:1,
+    zIndex:2, 
+    marginBottom:Platform.OS === 'android' ? 30:40,
+    // bottom:Platform.OS === 'android' ? 80:0,
+     width: 283,
+     height: 50,
+     backgroundColor: COLORS.green,
+     borderRadius: 56,
+     alignItems: 'center',
+     justifyContent: 'center',
+     shadowOffset: { width: 0, height: 2 },
+     shadowOpacity: 0.8,
+     shadowRadius: 3,
+     elevation: 3,
+ },
+ text2: {
+     color: '#fff',
+     fontWeight: 'bold',
+     fontSize: 35,
+   },
 });
 
 export default GameStage1;
