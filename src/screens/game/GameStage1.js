@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, FlatList, Switch, Text, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, FlatList, Text, TouchableOpacity } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import Background from '../../components/Background';
 import Header from '../../components/Header';
 import Match from '../../components/Match';
 import Scores from '../../components/Scores';
 import { COLORS } from '../../constants';
+import Switch from '../../components/Switch'
 
 const GameStage1 = ({route}) => {
   const [selectedIndex, setSelectedIndex] = useState(true);
@@ -32,35 +33,7 @@ const GameStage1 = ({route}) => {
     <Background >
       <Scores />
       <View style={styles.container}>
-          <View style={styles.containerSwitch}>
-          <TouchableOpacity style={
-            [
-              styles.button,
-              {
-              backgroundColor: selectedIndex ? COLORS.red : COLORS.gray
-            },
-            ]}
-            onPress={() => setSelectedIndex(true)}
-            >
-            <Text style={[styles.text,
-            {color:  selectedIndex ? COLORS.gray : COLORS.dark,}
-            ]}>{typeGame}</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={
-            [
-              styles.button,
-              { 
-              backgroundColor: selectedIndex ? COLORS.gray : COLORS.red,
-              
-            },
-            ]}
-            onPress={() => setSelectedIndex(false)}
-          >
-            <Text style={[styles.text,
-            {color:  selectedIndex ? COLORS.dark : COLORS.gray,}
-            ]}>Resultat</Text>
-          </TouchableOpacity>
-          </View>
+          <Switch typeGame={typeGame} resultat="Résultat" />
         
           <FlatList
           data={data}

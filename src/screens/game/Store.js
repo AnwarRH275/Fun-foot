@@ -1,10 +1,14 @@
 import { View, Text } from 'react-native'
 import React from 'react'
+import Grid from '../../components/Grid'
+import Header from '../../components/Header'
 
 const Store = () => {
   return (
     <View>
-      <Text>Store</Text>
+        <Header />
+        
+        <Grid />
     </View>
   )
 }
