@@ -1,26 +1,28 @@
-
-import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Platform, StyleSheet, Text, View} from 'react-native';
+import React, { useState } from 'react';
+import {COLORS, ROUTES} from '../../constants';
 import Background from '../../components/Background';
 import Header from '../../components/Header';
-import {COLORS} from '../../constants';
+import NavigationCat from '../../components/NavigationCat';
+import StartGame from '../../components/StartGame';
+import Scores from '../../components/Scores';
+import GameStage1 from '../game/GameStage1';
+import banner from '../../assets/game/50000.png'
+import path from '../../assets/game/background4.jpg'
+const Notifications = ({navigation}) => {
 
-const Notifications = () => {
+  
+  
   return (
-    <Background >
-      <Header />
-    <View
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: COLORS.bgColor,
-      }}>
-      <Text>Notification!</Text>
-    </View>
+    <Background path={path}>
 
-    </Background>
+      <Header  />
+      <Scores />
    
+      <StartGame setStartGame = {ROUTES.GAME_S3} banner={banner}/>
+   
+    
+    </Background>
   );
 };
 

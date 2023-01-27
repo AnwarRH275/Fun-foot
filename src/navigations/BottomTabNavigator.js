@@ -32,7 +32,7 @@ function BottomTabNavigator() {
         tabBarStyle: ((route) => {
           const routeName = getFocusedRouteNameFromRoute(route) ?? ""
           console.log(routeName)
-          if (routeName === ROUTES.GAME_S1) {
+          if (routeName === ROUTES.GAME_S1 || routeName === ROUTES.GAME_S2 || routeName === ROUTES.GAME_S3 || routeName === ROUTES.GAME_S4) {
             return { display: "none" }
           }
           return  styles.tabBarStyle
@@ -88,22 +88,22 @@ function BottomTabNavigator() {
         options={{
           tabBarLabel: 'Settings',
           title: 'Settings',
-          headerShown: true,
+          headerShown: false,
           tabBarButton: props => (
             <CustomTabBarButton route="settings" {...props} />
           ),
-          headerRight: () => {
-            return (
-              <TouchableOpacity onPress={() => navigation.openDrawer()}>
-                <Icon
-                  name={Platform.OS === 'ios' ? 'ios-menu' : 'md-menu'}
-                  size={30}
-                  color={COLORS.dark}
-                  style={{marginRight: 10}}
-                />
-              </TouchableOpacity>
-            );
-          },
+          // // headerRight: () => {
+          // //   return (
+          // //     <TouchableOpacity onPress={() => navigation.openDrawer()}>
+          // //       <Icon
+          // //         name={Platform.OS === 'ios' ? 'ios-menu' : 'md-menu'}
+          // //         size={30}
+          // //         color={COLORS.dark}
+          // //         style={{marginRight: 10}}
+          // //       />
+          // //     </TouchableOpacity>
+          // //   );
+          // },
         }}
       />
       
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
    backgroundColor:  Platform.OS==='ios' && COLORS.transparent ,
    
     borderTopWidth: 0,
-    bottom: Platform.OS==='ios' ? 10 : 0,
+    bottom: Platform.OS==='ios' ? 0 : 0,
     right: Platform.OS==='ios' ? 10 : 0,
     left: Platform.OS==='ios' ? 10 : 0,
     height: Platform.OS==='ios' ?  92 : 60,

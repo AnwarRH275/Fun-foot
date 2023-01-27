@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image } from 'react-native'
+import { View, Text, StyleSheet, Image, Platform } from 'react-native'
 import React from 'react'
 import { COLORS } from '../constants';
 import ticket from '../assets/game/golden-ticket.png'
@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         alignItems: 'center',
         justifyContent: 'space-between',
+        top:Platform.OS === 'android' ? 15:0,
     },
         container: {
       

@@ -1,18 +1,18 @@
 import { View, Text, StyleSheet, Image, TouchableOpacity ,Platform} from 'react-native'
 import React, { useState } from 'react'
-import banner from '../assets/Banner.png';
+
 import NavigationCat from './NavigationCat';
 import { COLORS, ROUTES } from '../constants';
 import { useNavigation } from '@react-navigation/native';
 
-const StartGame = ({setStartGame}) => {
+const StartGame = ({setStartGame,banner}) => {
   const [typeGame,setTypeGame] = useState('Espagnol');
   const navigation = useNavigation();
 
 
   const handlePress = () => {
-    console.log(typeGame)
-    navigation.navigate(ROUTES.GAME_S1,{typeGame});
+   
+    navigation.navigate(setStartGame,{typeGame});
   }
 
 
@@ -29,6 +29,8 @@ const StartGame = ({setStartGame}) => {
               <Text style={styles.text}>Jouer</Text>
             </TouchableOpacity>
           </View>  */}
+
+          <View style={styles.footer} ></View>
      </View>
   )
 }
@@ -46,7 +48,7 @@ const styles = StyleSheet.create({
     },
     image:{
     marginTop:10,  
-    // width:"90%",
+    width:"100%",
     // height:200, 
     borderColor: 'white',
     shadowColor: 'white',
@@ -76,5 +78,16 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 35,
       },
+      footer:{
+          width:"94.5%",
+          backgroundColor:COLORS.white,
+          bottom:25,
+          height:10,
+          borderRadius:20,
+          right: Platform.OS==='ios' ? 10 : 0,
+          left: Platform.OS==='ios' ? 10 : 0,
+          
+          
+      }
   });
   

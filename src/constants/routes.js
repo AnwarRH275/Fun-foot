@@ -4,6 +4,9 @@ export default {
     FORGOT_PASSWORD: 'Forgot Password',
   
     GAME_S1:'GameStage1',
+    GAME_S2:'GameStage2',
+    GAME_S3:'GameStage3',
+    GAME_S4:'GameStage4',
 
     HOME: 'Home',
     HOME_TAB: 'Home Tab',

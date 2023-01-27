@@ -18,7 +18,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import logoGoogle from '../../assets/logo/logoGoogle.png';
 import logoApple from '../../assets/logo/logoApple.png';
 import logoMeta from '../../assets/logo/logoMeta.png';
-
+import path from '../../assets/onboarding3.png'
 
 const Login = props => {
   // const {navigation} = props;
@@ -43,7 +43,7 @@ const Login = props => {
         />
         </View>
        ):(
-        <Background >
+        <Background path={path}>
         <SafeAreaView style={styles.main}>
         <View style={styles.container}>
           <View style={styles.wFull}>

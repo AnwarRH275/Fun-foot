@@ -7,6 +7,7 @@ import Match from '../../components/Match';
 import Scores from '../../components/Scores';
 import { COLORS } from '../../constants';
 import Switch from '../../components/Switch'
+import path from '../../assets/onboarding3.png'
 
 const GameStage1 = ({route}) => {
   const [selectedIndex, setSelectedIndex] = useState(true);
@@ -30,7 +31,7 @@ const GameStage1 = ({route}) => {
       const handlePress = () => {};
   return (
 
-    <Background >
+    <Background  path={path}>
       <Scores />
       <View style={styles.container}>
           <Switch typeGame={typeGame} resultat="Résultat" />

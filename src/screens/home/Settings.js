@@ -1,49 +1,31 @@
-import React from 'react';
-import {StyleSheet, Text, SafeAreaView, TouchableOpacity} from 'react-native';
+import {Platform, StyleSheet, Text, View} from 'react-native';
+import React, { useState } from 'react';
 import {COLORS, ROUTES} from '../../constants';
-
+import Background from '../../components/Background';
+import Header from '../../components/Header';
+import NavigationCat from '../../components/NavigationCat';
+import StartGame from '../../components/StartGame';
+import Scores from '../../components/Scores';
+import GameStage1 from '../game/GameStage1';
+import banner from '../../assets/game/500000.png'
+import path from '../../assets/game/background3.jpg'
 const Settings = ({navigation}) => {
+
+  
+  
   return (
-    <SafeAreaView
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: COLORS.bgColor,
-      }}>
-      <Text>Settings</Text>
+    <Background path={path}>
 
-      <TouchableOpacity
-        onPress={() => navigation.navigate(ROUTES.SETTINGS_DETAIL)}
-        style={styles.button}
-        activeOpacity={0.8}>
-        <Text style={styles.buttonText}>Go To Settings Detail</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity
-        onPress={() => navigation.navigate(ROUTES.LOGIN)}
-        style={styles.button}
-        activeOpacity={0.8}>
-        <Text style={styles.buttonText}>Log out</Text>
-      </TouchableOpacity>
-    </SafeAreaView>
+      <Header  />
+      <Scores />
+   
+      <StartGame setStartGame = {ROUTES.GAME_S4} banner={banner}/>
+   
+    
+    </Background>
   );
 };
 
 export default Settings;
 
-const styles = StyleSheet.create({
-  button: {
-    backgroundColor: COLORS.primary,
-    padding: 17,
-    margin: 10,
-    borderRadius: 5,
-    fontSize: 18,
-    width: 180,
-  },
-  buttonText: {
-    color: '#fff',
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-});
+const styles = StyleSheet.create({});

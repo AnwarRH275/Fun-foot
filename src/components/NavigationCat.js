@@ -30,7 +30,7 @@ const NavigationCat = ({setTypeGame,handlePress}) => {
         }
       >
         <ImageBackground  source={background}
-         style={{...styles.buttonColumn,height:'110%',width:'110%'}}
+         style={{...styles.buttonColumn,height:'100%',width:'100%'}}
         >
             {/* <View style={styles.buttonColumn}> */}
             
@@ -95,7 +95,7 @@ const styles = {
     alignItems: 'center',
     padding: 9,
     margin: 10,
-    marginBottom:300,
+    marginBottom:200,
     width: 230,
     height: 170,
     backgroundColor: COLORS.primary,

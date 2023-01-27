@@ -2,14 +2,16 @@ import { View, Text } from 'react-native'
 import React from 'react'
 import Grid from '../../components/Grid'
 import Header from '../../components/Header'
+import path from '../../assets/onboarding3.png'
+import Background from '../../components/Background'
 
 const Store = () => {
   return (
-    <View>
+    <Background path={path}>
         <Header />
         
         <Grid />
-    </View>
+    </Background>
   )
 }
 

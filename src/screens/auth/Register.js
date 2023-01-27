@@ -18,6 +18,8 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import logoGoogle from '../../assets/logo/logoGoogle.png';
 import logoApple from '../../assets/logo/logoApple.png';
 import logoMeta from '../../assets/logo/logoMeta.png';
+import path from '../../assets/game/background3.jpg'
+
 
 const Register = () => {
   const navigation = useNavigation();
@@ -43,13 +45,13 @@ const Register = () => {
         />
         </View>
        ):(
-        <Background >
+        <Background path={path}>
         <SafeAreaView style={styles.main}>
         <View style={styles.container}>
           <View style={styles.wFull}>
             <View style={styles.row}>
               {/* <Logo width={55} height={55} style={styles.mr7} /> */}
-              <Text style={styles.brandName}>DIR NIYA FOOT</Text>
+              <Text style={styles.brandName}>FUN FOOT</Text>
             </View>
 
             <Text style={styles.loginContinueTxt}>Create an account</Text>
@@ -291,9 +293,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     lineHeight: 27,
     color: '#F1FAEE',
-    flex: 'none',
-    order: 0,
-    flexGrow: 0,
+    
   },
   forgotPassText: {
     top:4,

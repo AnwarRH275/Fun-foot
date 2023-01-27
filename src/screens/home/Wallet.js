@@ -1,28 +1,30 @@
-
-import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
-import {COLORS} from '../../constants';
+import {Platform, StyleSheet, Text, View} from 'react-native';
+import React, { useState } from 'react';
 import Background from '../../components/Background';
 import Header from '../../components/Header';
+import StartGame from '../../components/StartGame';
+import Scores from '../../components/Scores';
+import banner from '../../assets/game/5000.png'
+import path from '../../assets/game/background1.jpg'
+import { ROUTES } from '../../constants';
 
-const Wallet = () => {
+const Wallet = ({navigation}) => {
 
+  
+  
   return (
-    <Background>
-      <Header  />
-      <View
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: COLORS.bgColor,
-      }}>
-      <Text>Wallet!</Text>
-    </View>
+    <Background path={path} >
 
-    </Background>
+      <Header  />
+      <Scores />
+   
+      <StartGame setStartGame = {ROUTES.GAME_S2} banner={banner} />
+   
     
+    </Background>
   );
 };
 
 export default Wallet;
+
+const styles = StyleSheet.create({});

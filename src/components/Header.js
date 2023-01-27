@@ -43,7 +43,9 @@ const styles = StyleSheet.create({
     headerContainer: {
         // height: 56,
        paddingHorizontal:Platform.OS === 'android' ? 10:30,
-        paddingVertical:Platform.OS === 'android' ? 15:20,
+        paddingVertical:Platform.OS === 'android' ? 10:20,
+        paddingTop:Platform.OS === 'android' ? 30:0,
+        
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
