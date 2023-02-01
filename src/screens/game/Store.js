@@ -9,7 +9,6 @@ const Store = () => {
   return (
     <Background path={path}>
         <Header />
-        
         <Grid />
     </Background>
   )

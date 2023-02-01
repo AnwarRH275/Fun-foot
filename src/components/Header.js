@@ -6,6 +6,7 @@ import menu from '../assets/align-left.png';
 import dollar from '../assets/tabBar/dollar.png'
 import { COLORS } from '../constants';
 import MySection from './MySection';
+import ModelShowSetting from './ModelShowSetting';
 
 function Header() {
 
@@ -14,6 +15,7 @@ function Header() {
 
     return (
         <View>
+            
             <SafeAreaView style={styles.headerContainer}>
             <TouchableOpacity style={styles.menuButton} onPress={() => { navigation.openDrawer() }}>
                 {/* <Icon name="ios-menu" size={24} color="#fff" /> */}
@@ -21,7 +23,7 @@ function Header() {
             </TouchableOpacity>
             
             {/* <Text style={styles.scoreText}> <Image source ={dollar}/> 1000 <Image source ={dollar}/></Text> */}
-            <TouchableOpacity style={styles.profileButton} onPress={() => { /* handle profile button press */ }}>
+            <TouchableOpacity style={styles.profileButton} onPress={() => <ModelShowSetting /> }>
                 <Icon name="ios-person" size={24} color={COLORS.primary} style={styles.menuB} />
             </TouchableOpacity>
             

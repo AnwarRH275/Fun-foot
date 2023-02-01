@@ -40,7 +40,7 @@ function DrawerNavigator() {
         name={ROUTES.HISTORIQUE_DRAWER}
         component={Historique}
         options={{
-          title: 'Historique',
+          title: 'Mes grilles',
           drawerIcon: ({focused, color, size}) => (
             <Icon name="wallet" size={18} color={color} />
           ),

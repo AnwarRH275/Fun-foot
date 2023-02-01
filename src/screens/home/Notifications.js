@@ -7,8 +7,8 @@ import NavigationCat from '../../components/NavigationCat';
 import StartGame from '../../components/StartGame';
 import Scores from '../../components/Scores';
 import GameStage1 from '../game/GameStage1';
-import banner from '../../assets/game/50000.png'
-import path from '../../assets/game/background4.jpg'
+import banner from '../../assets/game/500000.png'
+import path from '../../assets/game/background5.jpg'
 const Notifications = ({navigation}) => {
 
   

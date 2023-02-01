@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity ,Platform} from 'react-native'
+import { View, Text, StyleSheet, Image ,Platform} from 'react-native'
 import React, { useState } from 'react'
 
 import NavigationCat from './NavigationCat';
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
       footer:{
           width:"94.5%",
           backgroundColor:COLORS.white,
-          bottom:25,
+          bottom:28,
           height:10,
           borderRadius:20,
           right: Platform.OS==='ios' ? 10 : 0,
