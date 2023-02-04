@@ -6,14 +6,14 @@ import { COLORS, ROUTES } from '../constants';
 import { useNavigation } from '@react-navigation/native';
 
 const StartGame = ({setStartGame,banner}) => {
-  const [typeGame,setTypeGame] = useState('Espagnol');
-  const navigation = useNavigation();
+  // const [typeGame,setTypeGame] = useState('Espagnol');
+  // const navigation = useNavigation();
 
 
-  const handlePress = () => {
+  // const handlePress = () => {
    
-    navigation.navigate(setStartGame,{typeGame});
-  }
+  //   navigation.navigate(setStartGame,{typeGame});
+  // }
 
 
   return (
@@ -21,7 +21,7 @@ const StartGame = ({setStartGame,banner}) => {
         <View style={styles.container}>
             <Image style={styles.image} source={banner} />
         </View>
-        <NavigationCat setTypeGame={setTypeGame} handlePress={handlePress} />
+        <NavigationCat setStartGame={setStartGame} />
           {/* <View style={{alignItems:'center'}}>
             <TouchableOpacity style={styles.containerbtn}
             onPress={handlePress}

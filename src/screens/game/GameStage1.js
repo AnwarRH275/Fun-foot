@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, FlatList, Text, TouchableOpacity } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import Background from '../../components/Background';
@@ -8,27 +8,69 @@ import Scores from '../../components/Scores';
 import { COLORS } from '../../constants';
 import Switch from '../../components/Switch'
 import path from '../../assets/onboarding3.png'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import axiosInstance from '../../config/instance';
+
 
 const GameStage1 = ({route}) => {
   const [selectedIndex, setSelectedIndex] = useState(true);
+  const [matchs,setMatchs] = useState(null);
+  const [token,setToken] = useState(null);
+
+
   const { typeGame } = route.params;
-    const  data = [
-        {number: '1',equipe1:'ALMERIA',equipe2:'ATLETICO MADRID',status:''},
-        {number: '2',equipe1:'GIRONA',equipe2:'SEVILLE',status:''},
-        {number: '3',equipe1:'SOCIEDAD',equipe2:'ATHLETIC BILBAO',status:''},
-        {number: '4',equipe1:'VALLADOLID',equipe2:'RAYO VALLECANO',status:''},
-        {number: '5',equipe1:'PONFERRADINA',equipe2:'EIBAR',status:''},
-        {number: '6',equipe1:'LEGANES',equipe2:'LEVANTE',status:''},
-        {number: '7',equipe1:'HUESCA',equipe2:'TENERIFE',status:''},
-        {number: '8',equipe1:'LUGO',equipe2:'OVIEDO',status:''},
-        {number: '9',equipe1:'VALLADOLID',equipe2:'VILLARREAL B',status:''},
-        {number: '10',equipe1:'SOCIEDAD',equipe2:'ATHLETIC BILBAO',status:''},
-        {number: '11',equipe1:'VALLADOLID',equipe2:'RAYO VALLECANO',status:''},
-        {number: '12',equipe1:'VALLADOLID',equipe2:'RAYO VALLECANO',status:''},
-      ];
 
 
-      const handlePress = () => {};
+  useEffect(() => {
+
+
+
+    const checkToken = async () => {
+      try {
+       // await AsyncStorage.clear();
+        let gettoken = await AsyncStorage.getItem('token');
+        console.log(gettoken)
+        if (gettoken) {
+          setToken(gettoken);
+        }
+       // setIsLoading(false);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    checkToken();
+
+    const fetchData = async () => {
+       
+      try {
+        const response = await axiosInstance.get(`match/matchs/${typeGame}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        console.log(response.data);
+        setMatchs(response.data);
+      } catch (error) {
+      //  console.error(error);
+      }
+    };
+    fetchData();
+  }, [token]);
+
+  const handleResultUpdate = (id, newResult) => {
+    const updatedMatchs = matchs.map(match => {
+      if (match.id === id) {
+        return { ...match, resultat: newResult };
+      }
+      return match;
+    });
+    setMatchs(updatedMatchs);
+  };
+
+
+      const handlePress = () => {
+        console.log(matchs);
+      };
   return (
 
     <Background  path={path}>
@@ -37,9 +79,11 @@ const GameStage1 = ({route}) => {
           <Switch typeGame={typeGame} resultat="Résultat" />
         
           <FlatList
-          data={data}
+          data={matchs}
           renderItem={({ item,index }) => (
-            <Match key={item.number} number={item.number} equipe1={item.equipe1}  equipe2={item.equipe2}  />
+            <Match key={item.id} number={item.id} equipe1={item.equipe1}  equipe2={item.equipe2} resultat={item.resultat} 
+            onResultUpdate={newResult => handleResultUpdate(item.id, newResult)}
+            />
           )}
           keyExtractor={item => item.number}
         />

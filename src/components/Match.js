@@ -3,7 +3,7 @@ import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { COLORS } from '../constants';
 
 
-const Match = ({number,equipe1,equipe2}) => {
+const Match = ({number,equipe1,equipe2,resultat,onResultUpdate}) => {
   const [selectedIndex, setSelectedIndex] = useState(-1);
 
   const handlerValidation = ()=>{
@@ -27,7 +27,10 @@ const Match = ({number,equipe1,equipe2}) => {
             backgroundColor: selectedIndex===1 ? COLORS.primary : COLORS.gray
           },
           ]}
-          onPress={() => setSelectedIndex(1)}
+          onPress={() => {
+            setSelectedIndex(1)
+            onResultUpdate("1") 
+          }}
         >
           <Text 
           style={[styles.buttonText,
@@ -43,7 +46,9 @@ const Match = ({number,equipe1,equipe2}) => {
             backgroundColor: selectedIndex===0 ? COLORS.primary : COLORS.gray
           },
           ]}
-          onPress={() => setSelectedIndex(0)}>
+          onPress={() => {setSelectedIndex(0)
+            onResultUpdate("X") 
+          }}>
           <Text style={[styles.buttonText,
             {color:  selectedIndex ===0 ? COLORS.gray : COLORS.dark,}
             ]}>X</Text>
@@ -58,9 +63,9 @@ const Match = ({number,equipe1,equipe2}) => {
           ]}
           onPress={() => {
             setSelectedIndex(2)
-            if(number==12){
-              handlerValidation();
-            }
+            onResultUpdate("2") 
+              //handlerValidation();
+            
           }}>
           <Text style={[styles.buttonText,
             {color:  selectedIndex ===2 ? COLORS.gray : COLORS.dark,}

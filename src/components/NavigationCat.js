@@ -1,20 +1,86 @@
-import React, { useState } from 'react';
-import { View, FlatList, Text, TouchableOpacity, ImageBackground } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, FlatList, Text, TouchableOpacity, ImageBackground, Image } from 'react-native';
 import { COLORS } from '../constants';
 import background from '../assets/ICONNAVIGATION/back.png'
+import axiosInstance from '../config/instance'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import loading_gif from '../assets/game/loading.gif'
+import { useNavigation } from '@react-navigation/native';
 
-const NavigationCat = ({setTypeGame,handlePress}) => {
+const NavigationCat = ({setStartGame}) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const data = [
-    {number: 'N° 957',key:'Espagnol',date:'12/01/2023',time:'14:00'},
-    {number: 'N° 957',key:'Special',date:'12/02/2023',time:'18:00'},
-    {number: 'N° 957',key:'Fin de semaine',date:'17/01/2023',time:'16:00'},
-    {number: 'N° 957',key:'Mi-semaine',date:'17/01/2023',time:'16:00'},
-  ];
+  const [token,setToken] = useState(null);
+  const [categories,setCategories] = useState(null);
+  const [loading, setLoading] = useState(true);
 
+  const navigation = useNavigation();
+
+  const handlePress = (typeGame) => {
+   
+    navigation.navigate(setStartGame,{typeGame});
+  }
+  // const data = [
+  //   {number: 'N° 957',key:'Espagnol',date:'12/01/2023',time:'14:00'},
+  //   {number: 'N° 957',key:'Special',date:'12/02/2023',time:'18:00'},
+  //   {number: 'N° 957',key:'Fin de semaine',date:'17/01/2023',time:'16:00'},
+  //   {number: 'N° 957',key:'Mi-semaine',date:'17/01/2023',time:'16:00'},
+  // ];
+
+
+
+  useEffect(() => {
+
+
+
+    const checkToken = async () => {
+      try {
+       // await AsyncStorage.clear();
+        let gettoken = await AsyncStorage.getItem('token');
+        
+        if (gettoken) {
+          setToken(gettoken);
+        }
+       // setIsLoading(false);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    checkToken();
+
+    const fetchData = async () => {
+       
+      try {
+        const response = await axiosInstance.get('/category/Categories', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        
+        setCategories(response.data);
+        setLoading(false);
+      } catch (error) {
+      //  console.error(error);
+      }
+    };
+    fetchData();
+  }, [token]);
 
   const _renderItem = ({ item, index }) => {
     return (
+      <View>
+         {loading ? (
+        <Image
+        source={loading_gif}
+        style={{ position:'relative',
+       // alignItems: 'center',
+       // justifyContent: 'center',
+       // marginVertical:100,
+        margin:14,
+        marginBottom:200
+        }}
+      />
+       
+      ) : (
       <TouchableOpacity
         style={[
           styles.itemContainer,
@@ -23,9 +89,11 @@ const NavigationCat = ({setTypeGame,handlePress}) => {
         },
         ]}
         onPress={() => {
-            setTypeGame(item.key)
+
+         
+            console.log(item.categorie_match)
             setSelectedIndex(index)
-            handlePress()
+            handlePress(item.categorie_match)
           }
         }
       >
@@ -37,12 +105,16 @@ const NavigationCat = ({setTypeGame,handlePress}) => {
                 <Text style={[
                 styles.itemText,
                 { color: index === selectedIndex ? COLORS.dark : COLORS.white },
-                ]}>{item.number}</Text>
+                ]}>N° {item.numero_match}</Text>
 
                 <Text style={[
                 styles.itemText2,
                 { color: index === selectedIndex ? COLORS.dark : COLORS.white },
-                ]}>{item.key}</Text>
+                ]}>{item.categorie_match}</Text>
+                <Text style={[
+                styles.itemText4,
+                { color: index === selectedIndex ? COLORS.dark : COLORS.white },
+                ]}>{item.description}</Text>
                 <Text style={[
                 styles.itemText3,
                 { color: index === selectedIndex ? COLORS.dark : COLORS.white },
@@ -50,7 +122,7 @@ const NavigationCat = ({setTypeGame,handlePress}) => {
                  <Text style={[
                 styles.itemText3,
                 { color: index === selectedIndex ? COLORS.dark : COLORS.white },
-                ]}>{item.time}</Text>
+                ]}>{item.heure}</Text>
                 
             {/* </View> */}
 
@@ -58,13 +130,16 @@ const NavigationCat = ({setTypeGame,handlePress}) => {
         
         
       </TouchableOpacity>
+      )}
+      </View>
     );
 };
 
   return (
     <View style={styles.container}>
       <FlatList
-        data={data}
+        //data={data}
+        data={categories}
         renderItem={_renderItem}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
@@ -108,21 +183,29 @@ const styles = {
   },
   itemText: {
     fontWeight: '600',
-    fontSize: 27,
+    fontSize: 18,
     lineHeight: 39,
     textAlign: 'center',
     color: '#FFFFFF',
   },
   itemText2:{
+    fontWeight: '800',
+    fontSize: 23,
+    lineHeight: 39,
+    textAlign: 'center',
+    color: '#FFFFFF',
+  },
+  itemText4:{
     fontWeight: '600',
-    fontSize: 32,
+    fontSize: 15,
     lineHeight: 39,
     textAlign: 'center',
     color: '#FFFFFF',
   },
   itemText3:{
-    fontWeight: '600',
-    fontSize: 23,
+    fontWeight: '800',
+    marginVertical:-7,
+    fontSize: 15,
     lineHeight: 39,
     textAlign: 'center',
     color: '#FFFFFF',

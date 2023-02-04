@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import {
   StyleSheet,
   Text,
@@ -19,16 +19,56 @@ import logoGoogle from '../../assets/logo/logoGoogle.png';
 import logoApple from '../../assets/logo/logoApple.png';
 import logoMeta from '../../assets/logo/logoMeta.png';
 import path from '../../assets/game/background3.jpg'
+import axiosInstance from '../../config/instance'
+import Toast from 'react-native-easy-toast';
 
 
 const Register = () => {
   const navigation = useNavigation();
   const [showRealApp, setShowRealApp] = useState(false);
-  const [text, setText] = useState('');
+  const [username, setUsername] = useState('');
+  const [email,setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmePassword,setConfirmePassword] = useState('');
   const [hidePassword, setHidePassword] = useState(true);
+  const [hideCPassword, setHideCPassword] = useState(true);
   const [checked, setChecked] = useState(false);
+  const toastRef = useRef();
 
+  const handleSubmit=  async () => {
+
+    if(!username && !password && !email){
+      alert('Nom d\'utilisateur et mot de passe requis, connexion anonyme possible');
+
+    }else{
+      try {
+        if(confirmePassword == password){
+          const response = await axiosInstance.post('/auth/signup', {
+            username,
+            email,
+            password
+          });
+  
+          
+          if(response.data.message == "User created succes"){
+            alert(response.data.message)
+              toastRef.current.show('Account created!', 1000);
+             navigation.goBack();
+          }else{
+            alert(response.data.message)
+          }
+        }else{
+          alert('Merci de bien saise le même mot de passe')
+        }
+        
+        
+      } catch (error) {
+        console.error(error);
+      }
+      
+    }
+    
+  }
 
   return (
        <View style={{flex:1}}>
@@ -49,19 +89,21 @@ const Register = () => {
         <SafeAreaView style={styles.main}>
         <View style={styles.container}>
           <View style={styles.wFull}>
+             <Toast ref={toastRef} />
             <View style={styles.row}>
               {/* <Logo width={55} height={55} style={styles.mr7} /> */}
               <Text style={styles.brandName}>FUN FOOT</Text>
             </View>
-
+            
             <Text style={styles.loginContinueTxt}>Create an account</Text>
            <View style={styles.inputContainer}>
               <Icon name="person-circle-outline" size={25} color="#1D3557" style={styles.inputIcon} />
               <TextInput
                 style={styles.inputT}
                 placeholder="Username"
-                onChangeText={text => setText(text)}
-                value={text}
+                autoCapitalize="none"
+                onChangeText={text => setUsername(text)}
+                value={username}
               />
             </View> 
 
@@ -70,8 +112,9 @@ const Register = () => {
               <TextInput
                 style={styles.inputT}
                 placeholder="Email"
-                onChangeText={text => setText(text)}
-                value={text}
+                autoCapitalize="none"
+                onChangeText={text => setEmail(text)}
+                value={email}
               />
             </View> 
             
@@ -84,7 +127,7 @@ const Register = () => {
                 onChangeText={password => setPassword(password)}
                 value={password}
               />
-              <TouchableOpacity onPress={() => setHidePassword(!hidePassword)}>
+              <TouchableOpacity onPress={() => setHidePassword(!hideCPassword)}>
                   <Icon
                     name={hidePassword ? "ios-eye-off" : "ios-eye"}
                     size={22}
@@ -99,13 +142,13 @@ const Register = () => {
               <TextInput
                 style={styles.inputT}
                 placeholder="Confirme password"
-                secureTextEntry={hidePassword}
-                onChangeText={password => setPassword(password)}
-                value={password}
+                secureTextEntry={hideCPassword}
+                onChangeText={password2 => setConfirmePassword(password2)}
+                value={confirmePassword}
               />
-              <TouchableOpacity onPress={() => setHidePassword(!hidePassword)}>
+              <TouchableOpacity onPress={() => setHideCPassword(!hideCPassword)}>
                   <Icon
-                    name={hidePassword ? "ios-eye-off" : "ios-eye"}
+                    name={hideCPassword ? "ios-eye-off" : "ios-eye"}
                     size={22}
                     color="#1D3557"
                     style={styles.inputIcon}
@@ -116,7 +159,7 @@ const Register = () => {
             <View style={styles.loginBtnWrapper}>
           
                 <TouchableOpacity
-                  onPress={() => navigation.navigate(ROUTES.HOME)}
+                  onPress={handleSubmit}
                   activeOpacity={0.7}
                   style={styles.loginBtn}>
                   <Text style={styles.loginText}>SE CONNECTER</Text>

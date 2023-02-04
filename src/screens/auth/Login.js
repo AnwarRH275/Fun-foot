@@ -19,15 +19,55 @@ import logoGoogle from '../../assets/logo/logoGoogle.png';
 import logoApple from '../../assets/logo/logoApple.png';
 import logoMeta from '../../assets/logo/logoMeta.png';
 import path from '../../assets/onboarding3.png'
+import axiosInstance from '../../config/instance'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 const Login = props => {
   // const {navigation} = props;
   const navigation = useNavigation();
   const [showRealApp, setShowRealApp] = useState(true);
-  const [text, setText] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [hidePassword, setHidePassword] = useState(true);
   const [checked, setChecked] = useState(false);
+
+  const saveToken = async (token) => {
+    try {
+      await AsyncStorage.setItem('token', token);
+
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+
+  const handleSubmit=  async () => {
+    if(!username && !password){
+      alert('Nom d\'utilisateur et mot de passe requis, connexion anonyme possible');
+
+    }else{
+      try {
+        const response = await axiosInstance.post('/auth/login', {
+          username,
+          password
+        });
+
+        
+        if(response.data.acces_token){
+          saveToken(response.data.acces_token);
+          navigation.navigate(ROUTES.HOME)
+        }else{
+          alert(response.data.message)
+        }
+        
+      } catch (error) {
+        console.error(error);
+      }
+      
+    }
+    
+  }
 
   return (
     <View style={{flex:1}}>
@@ -58,8 +98,15 @@ const Login = props => {
               <TextInput
                 style={styles.inputT}
                 placeholder="Nom d'utilisateur ou email"
-                onChangeText={text => setText(text)}
-                value={text}
+                onChangeText={text => setUsername(text)}
+                value={username}
+                autoCapitalize="none"
+                returnKeyType="done"
+                onSubmitEditing={() => {
+                  if (!username) {
+                    alert('Username is required');
+                  }
+                }}
               />
             </View> 
             
@@ -98,7 +145,7 @@ const Login = props => {
           
               
                 <TouchableOpacity
-                   onPress={() => navigation.navigate(ROUTES.HOME)}
+                   onPress={handleSubmit}
                   activeOpacity={0.7}
                   style={styles.loginBtnWrapper}
                   >
