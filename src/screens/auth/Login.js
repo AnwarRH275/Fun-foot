@@ -35,7 +35,7 @@ const Login = props => {
   const saveToken = async (token) => {
     try {
       await AsyncStorage.setItem('token', token);
-
+      await AsyncStorage.setItem('username', username);
     } catch (error) {
       console.error(error);
     }
@@ -92,7 +92,7 @@ const Login = props => {
               <Text style={styles.brandName}>FUN FOOT</Text>
             </View>
 
-            <Text style={styles.loginContinueTxt}>Login in to continue</Text>
+            <Text style={styles.loginContinueTxt}>Connectez-vous pour continuer</Text>
            <View style={styles.inputContainer}>
               <Icon name="person-circle-outline" size={25} color="#1D3557" style={styles.inputIcon} />
               <TextInput
@@ -162,7 +162,7 @@ const Login = props => {
                 navigation.navigate(ROUTES.FORGOT_PASSWORD)
               }
               style={styles.forgotPassBtn}>
-              <Text style={styles.forgotPassText}>Forgot Password?</Text>
+              <Text style={styles.forgotPassText}>Mot de passe oublié ?</Text>
             </TouchableOpacity>
           </View>
             <View style={styles.forgotPassBtn}>
@@ -192,11 +192,11 @@ const Login = props => {
             </View>
 
           <View style={styles.footer}>
-            <Text style={styles.footerText}> Don't have an account? </Text>
+            <Text style={styles.footerText}> Vous n'avez pas de compte? </Text>
             
             <TouchableOpacity
               onPress={() => navigation.navigate(ROUTES.REGISTER)}>
-              <Text style={styles.signupBtn}>Sign Up</Text>
+              <Text style={styles.signupBtn}>S'inscrire</Text>
             </TouchableOpacity>
           </View>
        </View>

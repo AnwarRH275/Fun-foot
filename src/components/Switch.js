@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import { COLORS } from '../constants';
 
-const Switch = ({typeGame,resultat}) => {
+const Switch = ({typeGame,resultat,setSelectSection}) => {
     const [selectedIndex, setSelectedIndex] = useState(true);
 
   return (
@@ -14,7 +14,9 @@ const Switch = ({typeGame,resultat}) => {
       backgroundColor: selectedIndex ? COLORS.red : COLORS.gray
     },
     ]}
-    onPress={() => setSelectedIndex(true)}
+    onPress={() => {setSelectedIndex(true)
+      setSelectSection(true)
+    }}
     >
     <Text style={[styles.text,
     {color:  selectedIndex ? COLORS.gray : COLORS.dark,}
@@ -28,7 +30,9 @@ const Switch = ({typeGame,resultat}) => {
       
     },
     ]}
-    onPress={() => setSelectedIndex(false)}
+    onPress={() => {setSelectedIndex(false)
+      setSelectSection(false)
+    }}
   >
     <Text style={[styles.text,
     {color:  selectedIndex ? COLORS.dark : COLORS.gray,}

@@ -16,7 +16,7 @@ const GameStage1 = ({route}) => {
   const [selectedIndex, setSelectedIndex] = useState(true);
   const [matchs,setMatchs] = useState(null);
   const [token,setToken] = useState(null);
-
+  const [username,setUsername] =  useState('');
 
   const { typeGame } = route.params;
 
@@ -29,9 +29,13 @@ const GameStage1 = ({route}) => {
       try {
        // await AsyncStorage.clear();
         let gettoken = await AsyncStorage.getItem('token');
-        console.log(gettoken)
+        let getusername = await AsyncStorage.getItem('username');
+       // console.log(gettoken)
         if (gettoken) {
+
           setToken(gettoken);
+          setUsername(getusername)
+
         }
        // setIsLoading(false);
       } catch (error) {
@@ -68,8 +72,39 @@ const GameStage1 = ({route}) => {
   };
 
 
-      const handlePress = () => {
+  const handleUpdate = ( updatedValue, key) => {
+    const updatedData = matchs.map(item => {
+      
+        return { ...item, [key]: updatedValue };
+      
+     
+    });
+    setMatchs(updatedData);
+  };
+
+      const handlePress = async () => {
+        //console.log(matchs);
+        handleUpdate(username,'username')
+        handleUpdate('en cours','etat')
+        handleUpdate('','date_fin')
+        handleUpdate('','correct_resultat')
+
         console.log(matchs);
+
+        try {
+          const response = await axiosInstance.post('/mesgrid/mesgrids', matchs, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          console.log(response.data);
+        } catch (error) {
+          console.error(error);
+        }
+
+
+
+        
       };
   return (
 

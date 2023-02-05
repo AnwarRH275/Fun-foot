@@ -9,7 +9,7 @@ const Stack = createStackNavigator();
 // Navigator, Screen, Group
 
 function AuthNavigator() {
-  console.log(Stack);
+  //console.log(Stack);
   return (
     <Stack.Navigator screenOptions={{}} initialRouteName={ROUTES.LOGIN}>
       <Stack.Screen

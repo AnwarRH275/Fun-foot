@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import Background from '../../components/Background'
 import Header from '../../components/Header'
 import path from '../../assets/onboarding3.png'
@@ -9,13 +9,19 @@ import ParieTerminer from './ParieTerminer'
 
 
 const Historique = () => {
+  const [selectSection,setSelectSection] = useState(true);
   return (
     <Background path={path}>
         <Header />
         <View style={styles.container}>
-          <Switch typeGame={"Parie en cours"} resultat="Parie Terminer" />
+          <Switch typeGame={"En cours"} resultat="Terminer" setSelectSection={setSelectSection} />
+         {selectSection ? (
           <ParieEncours />
+         ):(
           <ParieTerminer />
+         )}
+          
+          
         </View>       
     </Background>
   )
