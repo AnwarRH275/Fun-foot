@@ -8,6 +8,13 @@ import CustomDrawer from '../components/CustomDrawer';
 import Historique from '../screens/game/Historique';
 import Store from '../screens/game/Store';
 import Affiliation from '../screens/game/Affiliation';
+import CodePromotionnel from '../screens/game/CodePromotionnel';
+import Gagnants from '../screens/game/Gagnants';
+import Aide from '../screens/game/Aide';
+import Conditions from '../screens/game/Conditions';
+import Politique from '../screens/game/Politique';
+import Erreur from '../screens/game/Erreur';
+import { Text, View } from 'react-native';
 
 
 const Drawer = createDrawerNavigator();
@@ -42,12 +49,12 @@ function DrawerNavigator() {
         options={{
           title: 'Mes grilles',
           drawerIcon: ({focused, color, size}) => (
-            <Icon name="wallet" size={18} color={color} />
+            <Icon name="grid" size={18} color={color} />
           ),
         }}
       />
 
-      <Drawer.Screen
+      {/* <Drawer.Screen
         name={ROUTES.STORE}
         component={Store}
         options={{
@@ -57,7 +64,7 @@ function DrawerNavigator() {
           ),
         }}
       />
-      
+       */}
 
     <Drawer.Screen
         name={ROUTES.AFFILIATION}
@@ -69,6 +76,77 @@ function DrawerNavigator() {
           ),
         }}
       />
+
+
+    <Drawer.Screen
+            name={ROUTES.CODEPROMOTS}
+            component={CodePromotionnel}
+            options={{
+              title: 'Code promotionnel',
+              drawerIcon: ({focused, color, size}) => (
+                <Icon name="md-card" size={18} color={color} />
+              ),
+            }}
+          />
+
+    <Drawer.Screen
+            name={ROUTES.GAGNANTS}
+            component={Gagnants}
+            options={{
+              title: 'Gagnants',
+              drawerIcon: ({focused, color, size}) => (
+                <Icon name="md-trophy" size={18} color={color} />
+              ),
+            }}
+          />
+
+
+      <Drawer.Screen
+                  name={ROUTES.AIDE}
+                  component={Aide}
+                  options={{
+                    title: 'Aide',
+                    drawerIcon: ({focused, color, size}) => (
+                      <Icon name="md-help-circle" size={18} color={color} />
+                    ),
+                  }}
+                />
+
+      <Drawer.Screen
+                  name={ROUTES.CONDITIONS}
+                  component={Conditions}
+                  options={{
+                    title: 'Conditions d\'utilisation',
+                    drawerIcon: ({focused, color, size}) => (
+                      <Icon name="md-document" size={18} color={color} />
+                    ),
+                  }}
+                />
+
+            <Drawer.Screen
+                  name={ROUTES.POLITIQUE}
+                  component={Politique}
+                  options={{
+                    title: 'Politique de confidencialité',
+                    drawerIcon: ({focused, color, size}) => (
+                      <Icon name="md-key" size={18} color={color} />
+                    ),
+                  }}
+                />
+
+            <Drawer.Screen
+                  name={ROUTES.ERREUR}
+                  component={Erreur}
+                  options={{
+                    title: 'Envoyer un rapport d\'erreur',
+                    drawerIcon: ({focused, color, size}) => (
+                      <Icon name="md-warning" size={18} color={color} />
+                      
+                    ),
+                  }}
+                />
+
+
     </Drawer.Navigator>
   );
 }

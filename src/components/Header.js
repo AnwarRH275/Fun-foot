@@ -7,10 +7,14 @@ import dollar from '../assets/tabBar/dollar.png'
 import { COLORS } from '../constants';
 import MySection from './MySection';
 import ModelShowSetting from './ModelShowSetting';
+import Scores from './Scores';
+import { useAuth } from '../context/AuthProvider';
 
 function Header() {
 
     const navigation = useNavigation();
+    const { scores, setScores } = useAuth();
+
 
 
     return (
@@ -22,6 +26,7 @@ function Header() {
                 <Image source={menu} style ={styles.menuB} />
             </TouchableOpacity>
             
+            <Scores scores={scores}/>
             {/* <Text style={styles.scoreText}> <Image source ={dollar}/> 1000 <Image source ={dollar}/></Text> */}
             <TouchableOpacity style={styles.profileButton} onPress={() => <ModelShowSetting /> }>
                 <Icon name="ios-person" size={24} color={COLORS.primary} style={styles.menuB} />

@@ -6,10 +6,10 @@ import Header from '../../components/Header'
 import LogoDollar from '../../assets/game/LogoDollar.png'
 import CopyTextButton from '../../components/CopyTextButton'
 import { COLORS } from '../../constants'
-
+import { useAuth } from '../../context/AuthProvider';
 
 const Affiliation = () => {
-  const [coupon,setCoupon] = useState('3xp74e1');
+  const {coupons} = useAuth();
 
   return (
     <Background path={path}>
@@ -19,9 +19,9 @@ const Affiliation = () => {
       </View>
       <View style={styles.row}>
         <View style={styles.container}>
-          <Text>{coupon}</Text>
+          <Text>{coupons}</Text>
         </View>
-        <CopyTextButton text={coupon}/>
+        <CopyTextButton text={coupons}/>
 
         
       </View>

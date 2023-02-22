@@ -6,46 +6,24 @@ import axiosInstance from '../config/instance'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import loading_gif from '../assets/game/loading.gif'
 import { useNavigation } from '@react-navigation/native';
+import { useAuth } from '../context/AuthProvider';
 
 const NavigationCat = ({setStartGame}) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [token,setToken] = useState(null);
+
   const [categories,setCategories] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  const {token } = useAuth();
   const navigation = useNavigation();
 
   const handlePress = (typeGame) => {
    
     navigation.navigate(setStartGame,{typeGame});
   }
-  // const data = [
-  //   {number: 'N° 957',key:'Espagnol',date:'12/01/2023',time:'14:00'},
-  //   {number: 'N° 957',key:'Special',date:'12/02/2023',time:'18:00'},
-  //   {number: 'N° 957',key:'Fin de semaine',date:'17/01/2023',time:'16:00'},
-  //   {number: 'N° 957',key:'Mi-semaine',date:'17/01/2023',time:'16:00'},
-  // ];
-
-
 
   useEffect(() => {
 
-
-
-    const checkToken = async () => {
-      try {
-       // await AsyncStorage.clear();
-        let gettoken = await AsyncStorage.getItem('token');
-        
-        if (gettoken) {
-          setToken(gettoken);
-        }
-       // setIsLoading(false);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    checkToken();
+    console.log(token)
 
     const fetchData = async () => {
        
@@ -72,9 +50,7 @@ const NavigationCat = ({setStartGame}) => {
         <Image
         source={loading_gif}
         style={{ position:'relative',
-       // alignItems: 'center',
-       // justifyContent: 'center',
-       // marginVertical:100,
+      
         margin:14,
         marginBottom:200
         }}
@@ -118,11 +94,11 @@ const NavigationCat = ({setStartGame}) => {
                 <Text style={[
                 styles.itemText3,
                 { color: index === selectedIndex ? COLORS.dark : COLORS.white },
-                ]}>{item.date}</Text>
+                ]}> Fin validation </Text>
                  <Text style={[
-                styles.itemText3,
+                styles.itemText4,
                 { color: index === selectedIndex ? COLORS.dark : COLORS.white },
-                ]}>{item.heure}</Text>
+                ]}>Le {item.date} à {item.heure}</Text>
                 
             {/* </View> */}
 
@@ -200,6 +176,8 @@ const styles = {
     fontSize: 15,
     lineHeight: 39,
     textAlign: 'center',
+    // marginVertical:'-3',
+    // marginHorizontal:'1',
     color: '#FFFFFF',
   },
   itemText3:{

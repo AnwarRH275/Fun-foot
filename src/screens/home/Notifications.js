@@ -7,7 +7,7 @@ import NavigationCat from '../../components/NavigationCat';
 import StartGame from '../../components/StartGame';
 import Scores from '../../components/Scores';
 import GameStage1 from '../game/GameStage1';
-import banner from '../../assets/game/500000.png'
+import banner from '../../assets/Banner/100000.png'
 import path from '../../assets/game/background5.jpg'
 const Notifications = ({navigation}) => {
 
@@ -17,7 +17,7 @@ const Notifications = ({navigation}) => {
     <Background path={path}>
 
       <Header  />
-      <Scores />
+      {/* <Scores /> */}
    
       <StartGame setStartGame = {ROUTES.GAME_S3} banner={banner}/>
    

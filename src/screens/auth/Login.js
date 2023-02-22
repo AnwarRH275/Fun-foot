@@ -21,6 +21,7 @@ import logoMeta from '../../assets/logo/logoMeta.png';
 import path from '../../assets/onboarding3.png'
 import axiosInstance from '../../config/instance'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useAuth } from '../../context/AuthProvider';
 
 
 const Login = props => {
@@ -31,11 +32,38 @@ const Login = props => {
   const [password, setPassword] = useState('');
   const [hidePassword, setHidePassword] = useState(true);
   const [checked, setChecked] = useState(false);
+  const { setScores,setToken,setMesgrids } = useAuth();
+
 
   const saveToken = async (token) => {
+    setToken(token);
     try {
+      const response2 = await axiosInstance.get(`Scores/scores/${username}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const response3 = await axiosInstance.get(`Coupons/getMyCoupons/${username}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const response = await axiosInstance.get(`mesgrid/mesgridDistinct/${username}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+     
+      setMesgrids(response.data);
+     
+      console.log(response3.data.coupons)
+      console.log(response2.data.scores)
+      setScores(response2.data.scores);
       await AsyncStorage.setItem('token', token);
       await AsyncStorage.setItem('username', username);
+      await AsyncStorage.setItem('coupons', response3.data.coupons);
+
+
     } catch (error) {
       console.error(error);
     }
@@ -56,6 +84,7 @@ const Login = props => {
         
         if(response.data.acces_token){
           saveToken(response.data.acces_token);
+         
           navigation.navigate(ROUTES.HOME)
         }else{
           alert(response.data.message)

@@ -10,16 +10,20 @@ import Switch from '../../components/Switch'
 import path from '../../assets/onboarding3.png'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axiosInstance from '../../config/instance';
-
+import { useAuth } from '../../context/AuthProvider';
+import { Alert } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const GameStage1 = ({route}) => {
   const [selectedIndex, setSelectedIndex] = useState(true);
   const [matchs,setMatchs] = useState(null);
   const [token,setToken] = useState(null);
   const [username,setUsername] =  useState('');
+  const { scores, setScores } = useAuth();
+
 
   const { typeGame } = route.params;
-
+  const navigation = useNavigation();
 
   useEffect(() => {
 
@@ -51,6 +55,7 @@ const GameStage1 = ({route}) => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
+          
         });
         console.log(response.data);
         setMatchs(response.data);
@@ -79,28 +84,40 @@ const GameStage1 = ({route}) => {
       
      
     });
+    console.log(updatedData)
     setMatchs(updatedData);
   };
 
       const handlePress = async () => {
-        //console.log(matchs);
+       
         handleUpdate(username,'username')
-        handleUpdate('en cours','etat')
-        handleUpdate('','date_fin')
-        handleUpdate('','correct_resultat')
-
-        console.log(matchs);
-
-        try {
-          const response = await axiosInstance.post('/mesgrid/mesgrids', matchs, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
+       
+        let validation = true;
+          
+        
+          matchs.forEach((item) => {
+            if (item.resultat === null) {
+              Alert.alert('Il faut complete l\'ensemble de la grille !! ');
+              validation = false;
+            }
           });
-          console.log(response.data);
-        } catch (error) {
-          console.error(error);
+        if(validation){
+          setScores(scores+1);
+          try {
+            const response = await axiosInstance.post('/mesgrid/mesgrids', matchs, {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            });
+            console.log(response.data);
+            Alert.alert('Paries accepter !');
+            navigation.goBack();
+          } catch (error) {
+            console.error(error);
+          }
+          
         }
+        
 
 
 
@@ -109,7 +126,7 @@ const GameStage1 = ({route}) => {
   return (
 
     <Background  path={path}>
-      <Scores />
+      <Scores scores={scores}/>
       <View style={styles.container}>
           <Switch typeGame={typeGame} resultat="Résultat" />
         
@@ -120,7 +137,7 @@ const GameStage1 = ({route}) => {
             onResultUpdate={newResult => handleResultUpdate(item.id, newResult)}
             />
           )}
-          keyExtractor={item => item.number}
+          keyExtractor={item => item.id}
         />
       </View>
       <View style={{alignItems:'center'}}>

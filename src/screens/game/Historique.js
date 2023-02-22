@@ -1,22 +1,46 @@
 import { View, Text, StyleSheet } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Background from '../../components/Background'
 import Header from '../../components/Header'
 import path from '../../assets/onboarding3.png'
 import Switch from '../../components/Switch'
 import ParieEncours from './ParieEncours'
 import ParieTerminer from './ParieTerminer'
-
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import axiosInstance from '../../config/instance'
+import { useAuth } from '../../context/AuthProvider'
 
 const Historique = () => {
   const [selectSection,setSelectSection] = useState(true);
+  const { mesgrids, setMesgrids,username,token } = useAuth();
+  
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
+
+  // const fetchData = async () => {
+  //   console.log({ mesgrids, setMesgrids,username,token})
+  //   try {
+  //     const response = await axiosInstance.get(`mesgrid/mesgridDistinct/${username}`, {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     });
+  //     console.log(response.data);
+  //     setMesgrids(response.data);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+  
   return (
     <Background path={path}>
         <Header />
         <View style={styles.container}>
           <Switch typeGame={"En cours"} resultat="Terminer" setSelectSection={setSelectSection} />
          {selectSection ? (
-          <ParieEncours />
+          <ParieEncours  mesgrids={mesgrids}/>
+          // <Text>sss</Text>
          ):(
           <ParieTerminer />
          )}

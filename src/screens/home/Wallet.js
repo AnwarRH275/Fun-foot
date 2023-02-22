@@ -4,7 +4,7 @@ import Background from '../../components/Background';
 import Header from '../../components/Header';
 import StartGame from '../../components/StartGame';
 import Scores from '../../components/Scores';
-import banner from '../../assets/game/50000.png'
+import banner from '../../assets/Banner/5000.png'
 import path from '../../assets/game/background1.jpg'
 import { ROUTES } from '../../constants';
 
@@ -16,7 +16,7 @@ const Wallet = ({navigation}) => {
     <Background path={path} >
 
       <Header  />
-      <Scores />
+      {/* <Scores /> */}
    
       <StartGame setStartGame = {ROUTES.GAME_S2} banner={banner} />
    

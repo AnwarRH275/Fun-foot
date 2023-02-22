@@ -64,7 +64,7 @@ const Match = ({number,equipe1,equipe2,resultat,onResultUpdate}) => {
           onPress={() => {
             setSelectedIndex(2)
             onResultUpdate("2") 
-              //handlerValidation();
+            
             
           }}>
           <Text style={[styles.buttonText,

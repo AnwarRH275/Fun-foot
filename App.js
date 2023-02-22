@@ -35,12 +35,14 @@ export default function App() {
     
       <NavigationContainer>
         {/* { isAuthenticated ? (<AuthNavigator />) : (<DrawerNavigator />) }  */}
+        <AuthProvider>
         {isAuthenticated ? (<AuthNavigator />):(
-          <AuthProvider>
+          
             <DrawerNavigator />
-          </AuthProvider>
+         
           
         )}
+         </AuthProvider>
       </NavigationContainer>
    
   );
