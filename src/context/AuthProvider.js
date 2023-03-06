@@ -8,6 +8,7 @@ export const AuthProvider = ({ children }) => {
   const [scores,setScores] = useState(0);
   const [mesgrids,setMesgrids] = useState([]);
   const [coupons,setCoupons] = useState('');
+  const [username,setUsername] = useState('')
 
   useEffect(() => {
     const checkToken = async () => {
@@ -18,6 +19,7 @@ export const AuthProvider = ({ children }) => {
        // console.log(gettoken)
         if (gettoken) {
            //console.log(gettoken)
+           setUsername(username);
             setToken(gettoken);
             setCoupons(getcoupons);
             
@@ -61,7 +63,7 @@ export const AuthProvider = ({ children }) => {
 
 
   return (
-    <AuthContext.Provider value={{ token, setToken,scores,setScores,mesgrids,setMesgrids,coupons,setCoupons }}>
+    <AuthContext.Provider value={{username, token, setToken,scores,setScores,mesgrids,setMesgrids,coupons,setCoupons }}>
       {children}
     </AuthContext.Provider>
   );

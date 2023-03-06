@@ -34,7 +34,7 @@ function BottomTabNavigator() {
           console.log(routeName)
           if (routeName === ROUTES.GAME_S1 || routeName === ROUTES.GAME_S2 ||
              routeName === ROUTES.GAME_S3 || routeName === ROUTES.GAME_S4 || 
-             routeName === ROUTES.CONSULTATION  ) {
+             routeName === ROUTES.CONSULTATION || routeName === ROUTES.ImageDetail  ) {
             return { display: "none" }
           }
           return  styles.tabBarStyle

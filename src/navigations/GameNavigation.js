@@ -7,6 +7,8 @@ import GameStage2 from '../screens/game/GameStage2';
 import GameStage3 from '../screens/game/GameStage3';
 import GameStage4 from '../screens/game/GameStage4';
 import ConsulterMesGrilles from '../screens/game/ConsulterMesGrilles';
+import ImageDetail from '../screens/game/ImageDetail';
+// import ImageDetail from '../screens/game/ImageDetail';
 
 const Stack = createStackNavigator();
 
@@ -22,25 +24,28 @@ function GameNavigation() {
       name={ROUTES.HOME} component={Home} />
       
       <Stack.Screen
-        options={{ tabBarStyle: { display: "none" }, }}
+        options={{ tabBarStyle: { display: "none" }, title: "Partie Bronze", }}
         name={ROUTES.GAME_S1} component={GameStage1} />
      
       
      <Stack.Screen
-      options={{ tabBarStyle: { display: "none" }, }}
+      options={{ tabBarStyle: { display: "none" }, title: "Partie Silver", }}
       name={ROUTES.GAME_S2} component={GameStage2} />
    
       <Stack.Screen
-      options={{ tabBarStyle: { display: "none" }, }}
+      options={{ tabBarStyle: { display: "none" },title: "Partie Gold", }}
       name={ROUTES.GAME_S3} component={GameStage3} />
     
       <Stack.Screen
-          options={{ tabBarStyle: { display: "none" }, }}
+          options={{ tabBarStyle: { display: "none" }, title: "Partie Diamon", }}
           name={ROUTES.GAME_S4} component={GameStage4} />
 
       <Stack.Screen
-        options={{ tabBarStyle: { display: "none" }, }}
+        options={{ tabBarStyle: { display: "none" }, title: null }}
         name={ROUTES.CONSULTATION} component={ConsulterMesGrilles} />
+        <Stack.Screen
+        options={{ tabBarStyle: { display: "none" }, title: null }}
+        name={ROUTES.ImageDetail} component={ImageDetail} />
 
   </Stack.Navigator>
   );

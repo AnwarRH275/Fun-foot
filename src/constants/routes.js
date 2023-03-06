@@ -1,56 +1,59 @@
 export default {
-    LOGIN: 'Login',
-    REGISTER: 'Register',
-    FORGOT_PASSWORD: 'Forgot Password',
-  
-    GAME_S1:'GameStage1',
-    GAME_S2:'GameStage2',
-    GAME_S3:'GameStage3',
-    GAME_S4:'GameStage4',
+  LOGIN: 'Login',
+  REGISTER: 'Register',
+  FORGOT_PASSWORD: 'Forgot Password',
 
-    CONSULTATION:'ConsulterMesGrilles',
+  GAME_S1:'GameStage1',
+  GAME_S2:'GameStage2',
+  GAME_S3:'GameStage3',
+  GAME_S4:'GameStage4',
 
-    HOME: 'Home',
-    HOME_TAB: 'Home Tab',
-    HOME_DRAWER: 'Home Drawer',
+  CONSULTATION:'ConsulterMesGrilles',
 
-    HISTORIQUE: 'Historique',
-    HISTORIQUE_DRAWER: 'Historique',
+  HOME: 'Home',
+  HOME_TAB: 'Home Tab',
+  HOME_DRAWER: 'Home Drawer',
 
-    STORE: 'Store',
-    STORE_DRAWER: 'Store',
+  HISTORIQUE: 'Historique',
+  HISTORIQUE_DRAWER: 'Historique',
 
-    AFFILIATION: 'Affiliation',
-    AFFILIATION_DRAWER: 'Affiliation',
+  STORE: 'Store',
+  STORE_DRAWER: 'Store',
 
-    GAGNANTS: 'Gagnants',
-    GAGNANTS_DRAWER: 'Gagnants',
+  AFFILIATION: 'Affiliation',
+  AFFILIATION_DRAWER: 'Affiliation',
 
-    CODEPROMOTS: 'CodePromotionnel',
-    CODEPROMOTS_DRAWER: 'Code promotionnel',
+  GAGNANTS: 'Gagnants',
+  GAGNANTS_DRAWER: 'Gagnants',
 
-    AIDE:'Aide',
-    AIDE_DRAWER: 'Code promotionnel',
+  CODEPROMOTS: 'CodePromotionnel',
+  CODEPROMOTS_DRAWER: 'Code promotionnel',
 
-    CONDITIONS:'Conditions',
-    CONDITIONS_DRAWER: 'Conditions d\'utilisation',
+  AIDE:'Aide',
+  AIDE_DRAWER: 'Code promotionnel',
 
-    POLITIQUE:'Politique',
-    POLITIQUE_DRAWER: 'Politique de confidencialité',
+  CONDITIONS:'Conditions',
+  CONDITIONS_DRAWER: 'Conditions d\'utilisation',
 
-    ERREUR:'Envoyer un rapport d\'erreur',
-    ERREUR_DRAWER: 'Envoyer un rapport d\'erreur',
+  POLITIQUE:'Politique',
+  POLITIQUE_DRAWER: 'Politique de confidencialité',
 
-    WALLET: 'Wallet',
-    WALLET_DRAWER: 'Wallet Drawer',
-  
-    NOTIFICATIONS: 'Notifications',
-    NOTIFICATIONS_DRAWER: 'Notifications Drawer',
-  
-    SETTINGS: 'Settings',
-    ACCOUNT_SETTINGS: 'Account Settings',
-    SETTINGS_NAVIGATOR: 'Settings Navigator',
-  
-    SETTINGS_DETAIL: 'Settings Detail',
-    PROFILE: 'My Profile',
-  };
+  ERREUR:'Envoyer un rapport d\'erreur',
+  ERREUR_DRAWER: 'Envoyer un rapport d\'erreur',
+
+  WALLET: 'Wallet',
+  WALLET_DRAWER: 'Wallet Drawer',
+
+  NOTIFICATIONS: 'Notifications',
+  NOTIFICATIONS_DRAWER: 'Notifications Drawer',
+
+  ImageDetail: 'ImageDetail',
+  ImageDetail_DRAWER: 'ImageDetail',
+
+  SETTINGS: 'Settings',
+  ACCOUNT_SETTINGS: 'Account Settings',
+  SETTINGS_NAVIGATOR: 'Settings Navigator',
+
+  SETTINGS_DETAIL: 'Settings Detail',
+  PROFILE: 'My Profile',
+};

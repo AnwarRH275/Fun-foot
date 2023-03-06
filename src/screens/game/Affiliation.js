@@ -26,7 +26,10 @@ const Affiliation = () => {
         
       </View>
       <View style={styles.containerd}>
-          <Text style={styles.text}>En partageant ce code avec vos amis, vous pourrez gagner des points.</Text>
+          <Text style={styles.text}>Gagnez 10 pièces d'or pour chaque ami parrainé ! 
+Comment ça marche:</Text>
+          {/* <Text style={styles.text}>En partageant ce code avec vos amis, vous pourrez gagner des points.</Text> */}
+          {/* <Text style={styles.text}>En partageant ce code avec vos amis, vous pourrez gagner des points.</Text> */}
       </View>
     </Background>
   )
@@ -57,7 +60,7 @@ const styles = StyleSheet.create({
    
     marginVertical:30,
     width: 336,
-    height: 125,
+    height: 325,
    
     backgroundColor: '#FFFFFF',
     borderWidth: 1,
@@ -65,6 +68,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
   },
   container:{
+    flexDirection:'row',
     backgroundColor:COLORS.white,
     padding: 10,
     borderTopStartRadius:10,
@@ -73,11 +77,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   text:{
-   textAlign:'center',
+  //  textAlign:'center',
     fontWeight: '600',
     fontSize: 17,
     lineHeight: 22,
-    letterSpacing: -0.32,
+    marginHorizontal:5,
+    //letterSpacing: -0.32,
     color: '#000000',
   }
 })

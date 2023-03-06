@@ -1,15 +1,58 @@
-import { View, Text, StyleSheet, TextInput, TouchableOpacityBase, TouchableOpacity } from 'react-native'
-import React from 'react'
+import { View, Text, StyleSheet, TextInput, TouchableOpacityBase, TouchableOpacity, Alert } from 'react-native'
+import React, { useState } from 'react'
 import Background from '../../components/Background'
 import Header from '../../components/Header'
 import path from '../../assets/onboarding3.png'
-import { COLORS } from '../../constants'
+import { COLORS, ROUTES } from '../../constants'
 import Icon from 'react-native-vector-icons/Ionicons';
+import { useAuth } from '../../context/AuthProvider';
+import axiosInstance from '../../config/instance';
+import { useNavigation } from '@react-navigation/native';
 
 
 
 const CodePromotionnel = () => {
-  const handleSubmit = () =>{}
+
+  const [codeP,setCodeP] = useState('');
+
+  const { scores, setScores,coupons,username,token } = useAuth();
+  const navigation = useNavigation();
+
+
+  const handleSubmit = async () =>{
+    console.log(codeP);
+    if(coupons !== codeP){
+      console.log(token,username,codeP)
+      try{
+        const response = await axiosInstance.put(`Coupons/addcoupons`, {
+          
+          "username": username,
+          "coupons": codeP,
+         
+        }, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+       
+        if(response.data.coupons){
+          
+          setScores(scores+response.data.nombre_de_pieces);
+          console.log(scores)
+          Alert.alert(`Félicitations vous avez gagné ${response.data.nombre_de_pieces} pièces !`);
+         // navigation.goBack();
+        }else{
+          alert('Coupons Invalid !!')
+        }
+      } catch (error) {
+        console.error(error);
+      }
+      
+
+
+    }
+    
+  }
   return (
     <Background path={path}>
     <Header />
@@ -19,20 +62,18 @@ const CodePromotionnel = () => {
     </View>
 
     <View style = {styles.container}>
-    <View style={styles.inputContainer}>
+      <View style={styles.inputContainer}>
                
-              <Icon name="pricetag" size={25} color="#1D3557" style={styles.inputIcon} />
+            <Icon name="pricetag" size={25} color="#1D3557" style={styles.inputIcon} />
              
               <TextInput
                 style={styles.inputT}
                 placeholder="Veuillez entrer le code d'affiliation"
-                onChangeText={text => {}}
-                // value={username}
+                onChangeText={text => {setCodeP(text)}}
+                 value={codeP}
                 autoCapitalize="none"
                 returnKeyType="done"
-                onSubmitEditing={() => {
-              
-                }}
+                
               />
             </View> 
 
@@ -139,13 +180,10 @@ const styles = StyleSheet.create({
       fontSize: 20,
       lineHeight: 27,
       color: '#F1FAEE',
-      // flex: 'none',
-      // order: 0,
-      // flexGrow: 0,
+      
     },
     container: {
       flex: 1,
-     // justifyContent: 'center',
       alignItems: 'center',
       margin: 20,
     },
