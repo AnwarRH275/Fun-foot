@@ -8,7 +8,7 @@ import GameStage3 from '../screens/game/GameStage3';
 import GameStage4 from '../screens/game/GameStage4';
 import ConsulterMesGrilles from '../screens/game/ConsulterMesGrilles';
 import ImageDetail from '../screens/game/ImageDetail';
-// import ImageDetail from '../screens/game/ImageDetail';
+
 
 const Stack = createStackNavigator();
 
