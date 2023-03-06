@@ -6,7 +6,7 @@ import AuthNavigator from './src/navigations/AuthNavigator';
 import DrawerNavigator from './src/navigations/DrawerNavigator';
 import { AuthProvider, useAuth } from './src/context/AuthProvider';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import { BottomSheetModal, BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 
 export default function App() {
 
@@ -35,14 +35,16 @@ export default function App() {
     
       <NavigationContainer>
         {/* { isAuthenticated ? (<AuthNavigator />) : (<DrawerNavigator />) }  */}
+        <BottomSheetModalProvider>
         <AuthProvider>
-        {isAuthenticated ? (<AuthNavigator />):(
+          {isAuthenticated ? (<AuthNavigator />):(
+            
+              <DrawerNavigator />
           
-            <DrawerNavigator />
-         
-          
-        )}
-         </AuthProvider>
+            
+          )}
+          </AuthProvider>
+         </BottomSheetModalProvider>
       </NavigationContainer>
    
   );

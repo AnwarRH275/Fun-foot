@@ -27,11 +27,12 @@ function Header() {
             </TouchableOpacity>
             
             <Scores scores={scores}/>
-            {/* <Text style={styles.scoreText}> <Image source ={dollar}/> 1000 <Image source ={dollar}/></Text> */}
-            <TouchableOpacity style={styles.profileButton} onPress={() => <ModelShowSetting /> }>
+            {/* <Text style={styles.scoreText}> <Image source ={dollar}/> 1000 <Image source ={dollar}/></Text>
+            <TouchableOpacity style={styles.profileButton} onPress={showModal}>
                 <Icon name="ios-person" size={24} color={COLORS.primary} style={styles.menuB} />
             </TouchableOpacity>
-            
+             */}
+              <ModelShowSetting />
         </SafeAreaView>
       
         </View>
